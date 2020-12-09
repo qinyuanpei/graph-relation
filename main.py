@@ -78,20 +78,13 @@ class RelationExtractor:
 		# 总频次，用于数据的归一化
 		total = sum(list(map(lambda x:x[1], nodes.items())))
 
-		# 为主要人物定义的头像地址模板
-		symbolTpl = 'image://http://qinyuanpei.github.io/graph-relation/images/{name}.jpg'
-
 		# 输出节点
 		nodes_data = []
 		for name, freq in nodes.items():
-			symbol = None
-			if (os.path.exists('./docs/images/{name}.jpg'.format(name=name))):
-				symbol = symbolTpl.format(name=name)
 			nodes_data.append(opts.GraphNode(
 				name = name, 
 				symbol_size = round(freq / total * 100, 2), 
 				value = freq,
-				symbol = symbol,
 			)),
 
 		# 输出边
